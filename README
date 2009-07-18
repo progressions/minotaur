@@ -1,0 +1,7 @@
+Minotaur
+
+Minotaur is a simple system to monitor the status of a remote website.  It consists of a Ruby script (monitor.rb), a JSON file (monitor.js), and a web page (monitor.html).
+
+monitor.rb will continuously poll the status of a website and write the results to monitor.js in JSON format.
+
+monitor.html will continuously reload monitor.js and update its contents based on the resulting status.
