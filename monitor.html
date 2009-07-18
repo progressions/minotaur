@@ -1,0 +1,30 @@
+<html>
+<head>
+  <title>Minotaur</title>
+  
+  <script type="text/javascript" src="javascripts/prototype.js"></script>
+  
+  
+  <script type="text/javascript">
+  
+  function init() {
+    var url = "monitor.js";
+        
+    new Ajax.Request(url, {
+      method: 'get',
+      onSuccess: function(transport) {
+        var response = JSON.parse(transport.responseText);
+        alert(response.status);
+      }
+    });
+
+  }
+  
+  </script>
+  
+</head>
+
+<body onload="init();">
+
+</body>
+</html>
