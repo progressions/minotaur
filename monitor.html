@@ -8,16 +8,23 @@
   <script type="text/javascript">
   
   function init() {
+    monitorStatus();
+    new PeriodicalExecuter(monitorStatus, 5);
+  }
+  
+  function monitorStatus() {
+  
     var url = "monitor.js";
         
     new Ajax.Request(url, {
       method: 'get',
       onSuccess: function(transport) {
         var response = JSON.parse(transport.responseText);
-        alert(response.status);
+        $('url').update(response.url);
+        $('status').update(response.status);
       }
     });
-
+    
   }
   
   </script>
@@ -25,6 +32,11 @@
 </head>
 
 <body onload="init();">
+  
+  <h1>Monitor</h1>
+  
+  <p>The url is <span id="url"></span></p>
+  <p>The status is <span id="status"></span></p>
 
 </body>
 </html>

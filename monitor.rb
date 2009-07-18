@@ -5,11 +5,15 @@ require 'json'
 require 'httparty'
 
 @file = "monitor.js"
+@url = 'http://www.weracketeer.com'
    
 while true do
   File.open(@file, "w") do |f|
-    response = HTTParty.get('http://www.google.com')
-    f.write JSON.generate({:status => response.code})
+    response = HTTParty.get(@url)
+    f.write JSON.generate({
+      :url => @url,
+      :status => response.code
+    })
     puts "writing"
   end
   sleep(5)
