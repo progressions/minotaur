@@ -1,0 +1,6 @@
+sites:
+  weracketeer:
+    url: www.weracketeer.com
+    
+  google:
+    url: www.google.com
