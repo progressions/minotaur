@@ -27,7 +27,6 @@ while true do
         :status => response.code
       }
     
-      
       FileUtils.mkdir_p "log"
       File.open("log/monitor.log", "a") do |l|
         l.write "#{Time.now.to_s} Pinging #{@url} with result #{response.code}\n"
