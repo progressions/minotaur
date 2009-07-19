@@ -1,0 +1,27 @@
+h1. Minotaur
+
+Minotaur is a simple system to monitor the status of remote websites.  It consists of a Ruby script (monitor.rb), a JSON file (monitor.js), and a web page (monitor.html).
+
+monitor.rb will continuously poll the status of a website and write the results to monitor.js in JSON format.
+
+monitor.html will continuously reload monitor.js and update its contents based on the resulting status.
+
+h2. Configuration
+
+monitor.yml is where you define the sites you want to load.
+
+<pre>
+sites:
+  google:
+    url: www.google.com
+  twitter:
+    url: www.twitter.com
+  paypal:
+    url: https://www.paypal.com
+</pre>
+    
+"http://" is assumed as the protocol.  To use https simply specify it in the url.
+
+h2. Logging
+
+Minotaur logs every ping to log/monitor.log.
