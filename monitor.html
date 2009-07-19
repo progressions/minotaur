@@ -3,9 +3,15 @@
   <title>Minotaur</title>
   
   <script type="text/javascript" src="javascripts/prototype.js"></script>
+  <script type="text/javascript" src="javascripts/date.js"></script>
   
   
   <script type="text/javascript">
+  
+  function todaysDate() { 
+    var now = new Date();
+    return now.toString("MMMM d, yyyy h:mm tt");
+  } 
   
   function init() {
     monitorStatus();
@@ -21,11 +27,15 @@
       onSuccess: function(transport) {
         var responses = JSON.parse(transport.responseText);
         var m = "";
+        
         responses.each(function(response) {
           m = m + "<p>";
           m = m + "The status for " + response.url + " is " + response.status;
           m = m + "</p>";
         });
+        
+        m = m + "<p>Last updated at " + todaysDate() + "</p>";
+        
         $('status').update(m);
       }
     });
