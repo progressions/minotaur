@@ -20,12 +20,13 @@
       method: 'get',
       onSuccess: function(transport) {
         var responses = JSON.parse(transport.responseText);
+        var m = "";
         responses.each(function(response) {
-          url_id = response.site + "_url";
-          status_id = response.site + "_status";
-          $(url_id).update(response.url);
-          $(status_id).update(response.status);
+          m = m + "<p>";
+          m = m + "The status for " + response.url + " is " + response.status;
+          m = m + "</p>";
         });
+        $('status').update(m);
       }
     });
     
@@ -38,11 +39,7 @@
 <body onload="init();">
   
   <h1>Monitor</h1>
-  
-  <p>The url for weracketeer is <span id="weracketeer_url"></span></p>
-  <p>The status is <span id="weracketeer_status"></span></p>
-
-  <p>The url for Google is <span id="google_url"></span></p>
-  <p>The status is <span id="google_status"></span></p>
+  <div id="status">
+  </div>
 </body>
 </html>
