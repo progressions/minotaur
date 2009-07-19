@@ -8,25 +8,32 @@ require 'httparty'
  
 while true do
   @sites = YAML.load_file("monitor.yml")["sites"]
+  @result = []
 
-  @sites.each do |site|
-    puts site[1].inspect
+  File.open(@file, "w") do |f|
+      
+    @sites.each do |site|
+      @site_name = site[0]
+      @url = site[1]["url"]
     
-    @url = site[1]["url"]
+      if @url !~ /^http/
+        @url = "http://#{@url}"
+      end
     
-    if @url !~ /^http/
-      @url = "http://#{@url}"
-    end
-    
-    File.open(@file, "w") do |f|
       response = HTTParty.get(@url)
-      @result = JSON.generate({
+      @result << {
+        :site => @site_name,
         :url => @url,
         :status => response.code
-      })
-      f.write(@result)
-      puts "pinging #{@url} with result: #{@result}"
+      }
+    
+      
+      FileUtils.mkdir_p "log"
+      File.open("log/monitor.log", "a") do |l|
+        l.write "#{Time.now.to_s} Pinging #{@url} with result #{response.code}\n"
+      end
     end
+    f.write(JSON.generate(@result))
   end
   sleep(5)
 end

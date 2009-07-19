@@ -19,9 +19,13 @@
     new Ajax.Request(url, {
       method: 'get',
       onSuccess: function(transport) {
-        var response = JSON.parse(transport.responseText);
-        $('url').update(response.url);
-        $('status').update(response.status);
+        var responses = JSON.parse(transport.responseText);
+        responses.each(function(response) {
+          url_id = response.site + "_url";
+          status_id = response.site + "_status";
+          $(url_id).update(response.url);
+          $(status_id).update(response.status);
+        });
       }
     });
     
@@ -35,8 +39,10 @@
   
   <h1>Monitor</h1>
   
-  <p>The url is <span id="url"></span></p>
-  <p>The status is <span id="status"></span></p>
+  <p>The url for weracketeer is <span id="weracketeer_url"></span></p>
+  <p>The status is <span id="weracketeer_status"></span></p>
 
+  <p>The url for Google is <span id="google_url"></span></p>
+  <p>The status is <span id="google_status"></span></p>
 </body>
 </html>
