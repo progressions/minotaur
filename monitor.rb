@@ -4,10 +4,10 @@ require 'rubygems'
 require 'json'
 require 'httparty'
 
-@file = "monitor.js"
+@file = "javascripts/monitor.js"
  
 while true do
-  @sites = YAML.load_file("monitor.yml")["sites"]
+  @sites = YAML.load_file("config/monitor.yml")["sites"]
   @result = []
 
   File.open(@file, "w") do |f|
@@ -29,7 +29,9 @@ while true do
     
       FileUtils.mkdir_p "log"
       File.open("log/monitor.log", "a") do |l|
-        l.write "#{Time.now.to_s} Pinging #{@url} with result #{response.code}\n"
+        status_string = "#{Time.now.to_s} Pinging #{@url} with result #{response.code}\n"
+        l.write status_string
+        puts status_string
       end
     end
     f.write(JSON.generate(@result))

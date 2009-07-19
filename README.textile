@@ -8,7 +8,7 @@ monitor.html will continuously reload monitor.js and update its contents based o
 
 h2. Configuration
 
-monitor.yml is where you define the sites you want to load.
+config/monitor.yml is where you define the sites you want to load.
 
 <pre>
 sites:
