@@ -5,8 +5,10 @@ require 'json'
 require 'httparty'
 
 @file = "javascripts/monitor.js"
- 
-while true do
+
+def monitor()
+  begin
+
   @sites = YAML.load_file("config/monitor.yml")["sites"]
   @result = []
 
@@ -37,4 +39,10 @@ while true do
     f.write(JSON.generate(@result))
   end
   sleep(5)
+  rescue
+  end
+end
+
+while true do
+  monitor()
 end
