@@ -24,7 +24,9 @@
   function monitorStatus() {
     var date = "";
     var url = "javascripts/monitor.js";
-        
+    
+    $('reloading').show();
+    
     new Ajax.Request(url, {
       method: 'get',
       onSuccess: function(transport) {
@@ -45,6 +47,7 @@
         { last_update = date }
         
         $('status').update(m);
+        $('reloading').hide();
       }
     });
     
@@ -57,6 +60,7 @@
 <body onload="init();">
   
   <h1>Monitor</h1>
+  <p id="reloading">Reloading...</p>
   <div id="status">
   </div>
 </body>

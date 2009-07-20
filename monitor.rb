@@ -30,6 +30,7 @@ def monitor()
         :date => Time.now.to_s
       }
     
+      # TODO: Break into its own class or incorporate a logging library
       FileUtils.mkdir_p "log"
       File.open("log/monitor.log", "a") do |l|
         status_string = "#{Time.now.to_s} Pinging #{@url} with result #{response.code}\n"
@@ -40,7 +41,8 @@ def monitor()
     f.write(JSON.generate(@result))
   end
   sleep(5)
-  rescue
+  rescue e
+    
   end
 end
 
