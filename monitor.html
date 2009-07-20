@@ -8,6 +8,7 @@
   
   <script type="text/javascript">
   
+  
   function todaysDate() { 
     var now = new Date();
     return now.toString("MMMM d, yyyy h:mm tt");
@@ -18,8 +19,10 @@
     new PeriodicalExecuter(monitorStatus, 5);
   }
   
-  function monitorStatus() {
+  var last_update = "";
   
+  function monitorStatus() {
+    var date = "";
     var url = "javascripts/monitor.js";
         
     new Ajax.Request(url, {
@@ -32,9 +35,14 @@
           m = m + "<p>";
           m = m + "The status for " + response.url + " is " + response.status;
           m = m + "</p>";
+          date = response.date;
         });
         
-        m = m + "<p>Last updated at " + todaysDate() + "</p>";
+        m = m + "<p>Last updated at " + date + "</p>";
+        if (last_update == date) {
+          m = m + "<p>No new updates.</p>";
+        } else
+        { last_update = date }
         
         $('status').update(m);
       }

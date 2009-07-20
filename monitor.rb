@@ -26,7 +26,8 @@ def monitor()
       @result << {
         :site => @site_name,
         :url => @url,
-        :status => response.code
+        :status => response.code,
+        :date => Time.now.to_s
       }
     
       FileUtils.mkdir_p "log"
