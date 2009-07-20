@@ -25,3 +25,19 @@ sites:
 h2. Logging
 
 Minotaur logs every ping to log/monitor.log.
+
+
+h2. To Use
+
+1. Install it by cloning the repository or whatever.
+
+2. Run "rake setup" to copy config/monitor.yml.example to config/monitor.yml.
+
+3. Edit config/monitor.yml to include whatever sites you want status updates on.
+
+4. Run monitor.rb.
+
+5. Open monitor.html in a browser.
+
+6. Enjoy!
+
